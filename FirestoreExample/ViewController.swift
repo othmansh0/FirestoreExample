@@ -6,6 +6,12 @@
 //
 
 //each document have a dictionary in it which will hold the values
+
+//to read and write anything to the database we need to have a document reference
+
+
+
+
 import FirebaseFirestore
 import UIKit
 
@@ -15,7 +21,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//to read and write anything to the database we need to have a document reference
+        writeData(text: "othman")
+        //read data
+        let docRef = database.document("diajo/example")
+        docRef.getDocument() { (snapshot,error) in
+            
+            guard let data = snapshot?.data(), error == nil else { return }
+            print(data)
+            
+        }
         
     }
     
